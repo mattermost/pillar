@@ -80,7 +80,7 @@ govet:
 .PHONY: build
 build: ## Build pillar.
 	@echo Building pillar
-	GOOS=linux GOARCH=amd64 CGO_ENABLED=0 $(GO) build -ldflags '$(LDFLAGS)' -gcflags all=-trimpath=$(PWD) -asmflags all=-trimpath=$(PWD) -a -installsuffix cgo -o build/_output/bin/cws  ./cmd/cws
+	GOOS=linux GOARCH=amd64 CGO_ENABLED=0 $(GO) build -ldflags '$(LDFLAGS)' -gcflags all=-trimpath=$(PWD) -asmflags all=-trimpath=$(PWD) -a -installsuffix cgo -o build/_output/bin/pillar  ./cmd/pillar
 
 ### Generate mocks
 .PHONY: mocks

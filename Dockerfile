@@ -62,16 +62,16 @@ RUN apk add --no-cache \
 && rm -rf /tmp/* \
 && apk del .build-deps
 
-ENV CWS=/cws/cws \
+ENV PILLAR=/pillar/pillar \
   USER_UID=10001 \
-  USER_NAME=cws
+  USER_NAME=pillar
 
-WORKDIR /cws
+WORKDIR /pillar
 
-COPY --from=builder-webapp /webapp/build/ /cws/webapp/build/
-COPY --from=builder-server /server/build/_output/bin/cws /cws/
-COPY --from=builder-server /server/i18n /cws/i18n
-COPY --from=builder-server /server/internal/templates /cws/internal/templates
+COPY --from=builder-webapp /webapp/build/ /pillar/webapp/build/
+COPY --from=builder-server /server/build/_output/bin/pillar /pillar/
+COPY --from=builder-server /server/i18n /pillar/i18n
+COPY --from=builder-server /server/internal/templates /pillar/internal/templates
 COPY --from=builder-server /server/build/bin /usr/local/bin
 
 # Copy wkhtmltopdf files from docker-wkhtmltopdf image
