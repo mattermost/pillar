@@ -7,6 +7,10 @@ import (
 )
 
 func convertInstallationToWorkspace(installation *cloud.InstallationDTO) *Workspace {
+	if installation == nil {
+		return nil
+	}
+
 	edition := WorkspaceEditionProfessional
 	if installation.Affinity == cloud.InstallationAffinityIsolated {
 		edition = WorkspaceEditionEnterprise
@@ -40,6 +44,10 @@ func convertInstallationsToWorkspaces(installations []*cloud.InstallationDTO) []
 }
 
 func convertCloudGroupToGroup(cloudGroup *cloud.Group) *Group {
+	if cloudGroup == nil {
+		return nil
+	}
+
 	return &Group{
 		ID:          cloudGroup.ID,
 		Name:        cloudGroup.Name,
@@ -47,7 +55,7 @@ func convertCloudGroupToGroup(cloudGroup *cloud.Group) *Group {
 	}
 }
 
-func getConfigForClusterInstallation(client *cloud.Client, clusterInstallationID string) (map[string]interface{}, error) {
+func getConfigForClusterInstallation(client CloudClient, clusterInstallationID string) (map[string]interface{}, error) {
 	cmdOutput, err := client.ExecClusterInstallationCLI(clusterInstallationID, "mmctl", []string{"config", "show", "--local"})
 	if err != nil {
 		return nil, err

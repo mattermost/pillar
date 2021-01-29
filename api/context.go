@@ -25,7 +25,7 @@ var _ CloudClient = &cloud.Client{}
 type CloudClient interface {
 	GetInstallation(string, *cloud.GetInstallationRequest) (*cloud.InstallationDTO, error)
 	GetInstallations(*cloud.GetInstallationsRequest) ([]*cloud.InstallationDTO, error)
-	GetClusterInstallation(string) (*cloud.ClusterInstallation, error)
+	GetClusterInstallations(*cloud.GetClusterInstallationsRequest) ([]*cloud.ClusterInstallation, error)
 	ExecClusterInstallationCLI(string, string, []string) ([]byte, error)
 	GetGroup(string) (*cloud.Group, error)
 }

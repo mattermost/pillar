@@ -98,6 +98,10 @@ func handleGetWorkspace(c *Context, w http.ResponseWriter, r *http.Request) {
 		c.writeAndLogError(w, err)
 		return
 	}
+	if installation == nil {
+		w.WriteHeader(http.StatusNotFound)
+		return
+	}
 
 	workspace := convertInstallationToWorkspace(installation)
 

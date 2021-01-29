@@ -63,19 +63,19 @@ func (mr *MockCloudClientMockRecorder) GetInstallations(arg0 interface{}) *gomoc
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetInstallations", reflect.TypeOf((*MockCloudClient)(nil).GetInstallations), arg0)
 }
 
-// GetClusterInstallation mocks base method
-func (m *MockCloudClient) GetClusterInstallation(arg0 string) (*model.ClusterInstallation, error) {
+// GetClusterInstallations mocks base method
+func (m *MockCloudClient) GetClusterInstallations(arg0 *model.GetClusterInstallationsRequest) ([]*model.ClusterInstallation, error) {
 	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "GetClusterInstallation", arg0)
-	ret0, _ := ret[0].(*model.ClusterInstallation)
+	ret := m.ctrl.Call(m, "GetClusterInstallations", arg0)
+	ret0, _ := ret[0].([]*model.ClusterInstallation)
 	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
 
-// GetClusterInstallation indicates an expected call of GetClusterInstallation
-func (mr *MockCloudClientMockRecorder) GetClusterInstallation(arg0 interface{}) *gomock.Call {
+// GetClusterInstallations indicates an expected call of GetClusterInstallations
+func (mr *MockCloudClientMockRecorder) GetClusterInstallations(arg0 interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetClusterInstallation", reflect.TypeOf((*MockCloudClient)(nil).GetClusterInstallation), arg0)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetClusterInstallations", reflect.TypeOf((*MockCloudClient)(nil).GetClusterInstallations), arg0)
 }
 
 // ExecClusterInstallationCLI mocks base method
