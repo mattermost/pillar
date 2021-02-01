@@ -15,6 +15,8 @@ RUN go mod download && go mod verify
 
 COPY . .
 
+RUN make build
+
 # Production environment
 FROM ${DOCKER_BASE_IMAGE}
 
