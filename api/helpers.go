@@ -5,7 +5,7 @@ import (
 	"io"
 )
 
-func decodeJSON(obj interface{}, body io.ReadCloser) error {
+func decodeJSON(obj interface{}, body io.Reader) error {
 	decoder := json.NewDecoder(body)
 	err := decoder.Decode(&obj)
 	if err != nil && err != io.EOF {
