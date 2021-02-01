@@ -39,28 +39,12 @@ build-image:
 	. -t $(PILLAR_IMAGE) \
 	--no-cache
 
-## Build the Container image for local development.
-.PHONY: dev-start
-dev-start:
-	@echo Starting local development
-	docker-compose up -d
-
-## Shutdown the development environment.
-.PHONY: dev-stop
-dev-stop:
-	@echo Shutting down the local environment
-	docker-compose down
-
-## Clean the development environment.
-.PHONY: dev-clean
-dev-clean:
-	@echo Cleaning the local environment
-	docker-compose kill
-
 ## Runs govet and gofmt against all packages.
 .PHONY: check-style
 check-style: govet lint
 	@echo Checking for style guide compliance
+	$(GO) fmt ./...
+	
 
 ## Runs lint against all packages.
 .PHONY: lint
