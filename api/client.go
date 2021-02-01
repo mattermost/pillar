@@ -115,9 +115,8 @@ func (c *Client) doDelete(u string) (*http.Response, error) {
 
 func workspacesFromReader(reader io.Reader) ([]*Workspace, error) {
 	workspaces := []*Workspace{}
-	decoder := json.NewDecoder(reader)
 
-	err := decoder.Decode(&workspaces)
+	err := decodeJSON(&workspaces, reader)
 	if err != nil && err != io.EOF {
 		return nil, err
 	}
@@ -144,9 +143,8 @@ func (c *Client) ListWorkspaces(request *cloud.GetInstallationsRequest) ([]*Work
 
 func workspaceDetailedFromReader(reader io.Reader) (*WorkspaceDetailed, error) {
 	workspace := &WorkspaceDetailed{}
-	decoder := json.NewDecoder(reader)
 
-	err := decoder.Decode(&workspace)
+	err := decodeJSON(workspace, reader)
 	if err != nil && err != io.EOF {
 		return nil, err
 	}
