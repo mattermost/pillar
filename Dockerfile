@@ -29,7 +29,7 @@ COPY --from=builder-server /server/build/bin /usr/local/bin
 
 RUN  /usr/local/bin/user_setup
 
-EXPOSE 808
+EXPOSE 8078
 
 ENTRYPOINT ["/usr/local/bin/entrypoint"]
 
