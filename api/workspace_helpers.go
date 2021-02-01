@@ -2,6 +2,7 @@ package api
 
 import (
 	"encoding/json"
+	"errors"
 
 	cloud "github.com/mattermost/mattermost-cloud/model"
 )
@@ -36,6 +37,10 @@ func convertInstallationToWorkspace(installation *cloud.InstallationDTO) *Worksp
 }
 
 func convertInstallationsToWorkspaces(installations []*cloud.InstallationDTO) []*Workspace {
+	if installations == nil {
+		return nil
+	}
+
 	workspaces := make([]*Workspace, len(installations))
 	for index, installation := range installations {
 		workspaces[index] = convertInstallationToWorkspace(installation)
@@ -56,6 +61,10 @@ func convertCloudGroupToGroup(cloudGroup *cloud.Group) *Group {
 }
 
 func getConfigForClusterInstallation(client CloudClient, clusterInstallationID string) (map[string]interface{}, error) {
+	if client == nil {
+		return nil, errors.New("CloudClient is nil")
+	}
+
 	cmdOutput, err := client.ExecClusterInstallationCLI(clusterInstallationID, "mmctl", []string{"config", "show", "--local"})
 	if err != nil {
 		return nil, err
