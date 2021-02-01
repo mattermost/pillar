@@ -50,7 +50,7 @@ type Config struct {
 
 var serverCmd = &cobra.Command{
 	Use:   "server",
-	Short: "Run the customer web server.",
+	Short: "Run Pillar API server.",
 	RunE: func(command *cobra.Command, args []string) error {
 		command.SilenceUsage = true
 
